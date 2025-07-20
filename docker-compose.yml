@@ -1,0 +1,43 @@
+# Docker Compose for PostgreSQL
+# Use this file to run a local PostgreSQL database for development.
+
+version: '3.8'
+
+services:
+  # Service name for the PostgreSQL container
+  postgres_db:
+    image: postgres:17-alpine3.22
+    container_name: photravel_postgres
+    # Environment variables for database configuration
+    # WARNING: Do not use these credentials in production.
+    env_file:
+      - dev.env
+    # Port mapping: <Host Port>:<Container Port>
+    # Connect to the database from your local machine via port 5432.
+    ports:
+      - "5432:5432"
+    # Named volume to persist database data across container restarts
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # Restart policy
+    restart: unless-stopped
+
+  nestjs_backend:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    container_name: photravel_nestjs_app
+    env_file:
+      - dev.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres_db
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - /app/node_modules
+# Top-level volumes definition
+volumes:
+  postgres_data:
+    name: photravel_postgres_data

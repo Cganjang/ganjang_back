@@ -17,7 +17,8 @@
       "recommended": true,
       "style": {
         "useImportType": "off",
-        "useExportType": "off"
+        "useExportType": "off",
+        "useTemplate": "off"
       }
     }
   },
