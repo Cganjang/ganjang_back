@@ -7,7 +7,7 @@ services:
   # Service name for the PostgreSQL container
   postgres_db:
     image: postgres:17-alpine3.22
-    container_name: photravel_postgres
+    container_name: ganjang_postgres
     # Environment variables for database configuration
     # WARNING: Do not use these credentials in production.
     env_file:
@@ -26,7 +26,7 @@ services:
     build:
       context: .
       dockerfile: dev.Dockerfile
-    container_name: photravel_nestjs_app
+    container_name: ganjang_nestjs_app
     env_file:
       - dev.env
     ports:
@@ -40,4 +40,4 @@ services:
 # Top-level volumes definition
 volumes:
   postgres_data:
-    name: photravel_postgres_data
+    name: ganjang_postgres_data
