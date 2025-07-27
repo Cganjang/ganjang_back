@@ -1,11 +1,11 @@
-import { AuthRepository } from "@/modules/auth/auth.repository";
+import { UserRepository } from "@/modules/users/user.repository";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly authRepository: AuthRepository) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async findAll() {
-    this.authRepository.findAll();
+    this.userRepository.findAll();
   }
 }
