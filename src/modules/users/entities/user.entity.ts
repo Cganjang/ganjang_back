@@ -1,5 +1,5 @@
 import { UserRole, UserStatus } from "@/types";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("users")
 export class User {
@@ -30,8 +30,18 @@ export class User {
   })
   status: UserStatus;
 
+  @Column({
+    type: "varchar",
+    length: 100,
+    nullable: false,
+  })
   name: string;
 
+  @Column({
+    type: "varchar",
+    length: 50,
+    nullable: false,
+  })
   phone: string;
 
   @Column({
@@ -40,6 +50,20 @@ export class User {
     nullable: false,
   })
   role: UserRole;
+
+  @Column({
+    type: "varchar",
+    length: 255,
+    nullable: true,
+    default: null,
+  })
+  refresh_token: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @CreateDateColumn()
+  updated_at: Date;
 }
 
 // id int [pk, increment]

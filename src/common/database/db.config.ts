@@ -7,7 +7,7 @@ export const dbConfig: TypeOrmModuleOptions = {
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  entities: [__dirname + "/**/*.entity{.ts.js}"],
+  entities: [__dirname + "/../../modules/**/*.entity{.ts,.js}"],
   synchronize: process.env.NODE_ENV === "dev",
   logging: process.env.NODE_ENV === "dev",
 };
