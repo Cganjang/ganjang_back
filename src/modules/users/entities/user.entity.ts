@@ -1,13 +1,13 @@
-import { UserRole, UserStatus } from "@/types";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { UserRole, UserStatus } from '@/types';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity("users")
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
-    type: "varchar",
+    type: 'varchar',
     length: 50,
     unique: true,
     nullable: false,
@@ -15,7 +15,7 @@ export class User {
   account: string;
 
   @Column({
-    type: "varchar",
+    type: 'varchar',
     length: 255,
     nullable: false,
     select: false,
@@ -23,7 +23,7 @@ export class User {
   password: string;
 
   @Column({
-    type: "enum",
+    type: 'enum',
     enum: UserStatus,
     default: UserStatus.ACTIVE,
     nullable: false,
@@ -31,28 +31,28 @@ export class User {
   status: UserStatus;
 
   @Column({
-    type: "varchar",
+    type: 'varchar',
     length: 100,
     nullable: false,
   })
   name: string;
 
   @Column({
-    type: "varchar",
+    type: 'varchar',
     length: 50,
     nullable: false,
   })
   phone: string;
 
   @Column({
-    type: "enum",
+    type: 'enum',
     enum: UserRole,
     nullable: false,
   })
   role: UserRole;
 
   @Column({
-    type: "varchar",
+    type: 'varchar',
     length: 255,
     nullable: true,
     default: null,

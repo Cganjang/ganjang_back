@@ -1,6 +1,6 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from "@nestjs/common";
-import { Response } from "express";
-import { ErrorResponse } from "@/interfaces";
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common';
+import { Response } from 'express';
+import { ErrorResponse } from '@/interfaces';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -19,7 +19,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       success: false,
       error: {
         code: status.toString(),
-        message: Array.isArray(errorDetails.message) ? errorDetails.message.join(", ") : errorDetails.message,
+        message: Array.isArray(errorDetails.message) ? errorDetails.message.join(', ') : errorDetails.message,
         timestamp: new Date().toISOString(),
       },
     };

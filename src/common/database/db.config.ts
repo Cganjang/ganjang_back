@@ -1,13 +1,13 @@
-import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export const dbConfig: TypeOrmModuleOptions = {
-  type: "postgres",
-  host: process.env.POSTGRES_HOST || "localhost",
-  port: parseInt(process.env.POSTGRES_PORT || "5432", 10),
+  type: 'postgres',
+  host: process.env.POSTGRES_HOST || 'localhost',
+  port: parseInt(process.env.POSTGRES_PORT || '5432', 10),
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  entities: [__dirname + "/../../modules/**/*.entity{.ts,.js}"],
-  synchronize: process.env.NODE_ENV === "dev",
-  logging: process.env.NODE_ENV === "dev",
+  entities: [__dirname + '/../../modules/**/*.entity{.ts,.js}'],
+  synchronize: process.env.NODE_ENV === 'dev',
+  logging: process.env.NODE_ENV === 'dev',
 };

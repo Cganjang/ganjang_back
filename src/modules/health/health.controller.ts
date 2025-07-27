@@ -1,22 +1,22 @@
-import { Controller, Get, InternalServerErrorException } from "@nestjs/common";
+import { Controller, Get, InternalServerErrorException } from '@nestjs/common';
 
-@Controller("health")
+@Controller('health')
 export class HealthController {
   @Get()
   checkHealth() {
-    return "ok";
+    return 'ok';
   }
 
-  @Get("details")
+  @Get('details')
   checkHealthDetails() {
     return {
-      status: "ok",
+      status: 'ok',
       uptime: process.uptime(),
     };
   }
 
-  @Get("error")
+  @Get('error')
   checkError() {
-    throw new InternalServerErrorException("서버 에러 테스트");
+    throw new InternalServerErrorException('서버 에러 테스트');
   }
 }
