@@ -2,7 +2,7 @@ import { AuthService } from '@/modules/auth/auth.service';
 import { CreateUserDto } from '@/modules/users/dto/create-user.dto';
 import { UserEntity } from '@/modules/users/entities/user.entity';
 import { UsersRepository } from '@/modules/users/user.repository';
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()
@@ -17,13 +17,19 @@ export class UsersService {
     access_token: string;
     refresh_token: string;
   }> {
-    const { password, ...rest } = createUserDto;
+    const { password, account, ...rest } = createUserDto;
+
+    const existingUser = await this.userRepository.findUserByAccount(account);
+    if (existingUser) {
+      throw new ConflictException('이미 가입된 계정입니다.');
+    }
 
     const saltRound = 11;
     const hashedPass = await bcrypt.hash(password, saltRound);
 
     const newUser = await this.userRepository.createUser({
       ...rest,
+      account,
       password: hashedPass,
     });
 

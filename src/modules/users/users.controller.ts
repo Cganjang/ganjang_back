@@ -7,7 +7,7 @@ import { Response } from 'express';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('/new')
+  @Post('new')
   async createUser(@Body() createUserDto: CreateUserDto, @Res({ passthrough: true }) res: Response) {
     const { user, access_token, refresh_token } = await this.usersService.createUser(createUserDto);
 

@@ -19,6 +19,10 @@ export class UsersRepository {
     return this.userRepository.findOneBy({ id });
   }
 
+  async findUserByAccount(account: string): Promise<UserEntity | null> {
+    return this.userRepository.findOneBy({ account });
+  }
+
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     const newUser = this.userRepository.create(createUserDto);
 
