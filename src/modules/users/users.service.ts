@@ -12,6 +12,9 @@ export class UsersService {
     private readonly authService: AuthService,
   ) {}
 
+  /**
+   * @todo - createUser와 refreshToken transaction 묶기
+   */
   async createUser(createUserDto: CreateUserDto): Promise<{
     user: UserEntity;
     access_token: string;
