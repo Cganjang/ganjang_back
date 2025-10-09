@@ -1,4 +1,5 @@
 import { UserRole, UserStatus } from '@/types';
+import { Exclude } from 'class-transformer';
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
@@ -20,6 +21,7 @@ export class UserEntity {
     nullable: false,
     select: false,
   })
+  @Exclude()
   password: string;
 
   @Column({
@@ -57,6 +59,7 @@ export class UserEntity {
     nullable: true,
     default: null,
   })
+  @Exclude()
   refresh_token: string;
 
   @CreateDateColumn()

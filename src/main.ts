@@ -1,8 +1,8 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception/http-exception.filter';
 import { ResponseInterceptor } from './common/interceptors/response/response.interceptor';
-import { ValidationPipe, BadRequestException } from '@nestjs/common';
+import { ValidationPipe, BadRequestException, ClassSerializerInterceptor } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -27,6 +27,7 @@ async function bootstrap() {
       },
     }),
   );
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
 

@@ -15,9 +15,19 @@ export class UsersRepository {
     return this.userRepository.find();
   }
 
+  async findUserById(id: number): Promise<UserEntity | null> {
+    return this.userRepository.findOneBy({ id });
+  }
+
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     const newUser = this.userRepository.create(createUserDto);
 
     return this.userRepository.save(newUser);
+  }
+
+  async updateRefreshToken(userId: number, refreshToken: string): Promise<void> {
+    await this.userRepository.update(userId, {
+      refresh_token: refreshToken,
+    });
   }
 }
