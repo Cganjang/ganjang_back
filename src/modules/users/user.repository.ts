@@ -1,3 +1,4 @@
+import { CreateUserDto } from '@/modules/users/dto/create-user.dto';
 import { UserEntity } from '@/modules/users/entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,5 +13,11 @@ export class UsersRepository {
 
   async findAll() {
     return this.userRepository.find();
+  }
+
+  async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
+    const newUser = this.userRepository.create(createUserDto);
+
+    return this.userRepository.save(newUser);
   }
 }

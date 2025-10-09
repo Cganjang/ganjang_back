@@ -10,7 +10,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const status = exception.getStatus();
 
     const errorDetails = exception.getResponse() as {
-      message: string | string[];
+      message: string | Record<string, any>;
       error: string;
       statusCode: number;
     };
@@ -19,7 +19,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       success: false,
       error: {
         code: status.toString(),
-        message: Array.isArray(errorDetails.message) ? errorDetails.message.join(', ') : errorDetails.message,
+        message: errorDetails.message,
         timestamp: new Date().toISOString(),
       },
     };
