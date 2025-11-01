@@ -1,7 +1,7 @@
-import { UserRole } from '@/types';
+import { StaffRole, StaffRoleType } from '@/types';
 import { IsEnum, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateStaffDto {
   @IsString()
   @IsNotEmpty()
   readonly account: string;
@@ -19,7 +19,7 @@ export class CreateUserDto {
   @IsNotEmpty()
   readonly phone: string;
 
-  @IsEnum(UserRole)
+  @IsEnum(StaffRole)
   @IsNotEmpty()
-  readonly role: UserRole;
+  readonly role: StaffRoleType;
 }

@@ -1,9 +1,9 @@
-import { UserRole, UserStatus } from '@/types';
+import { StaffRole, StaffRoleType, StaffStatus, StaffStatusType } from '@/types';
 import { Exclude } from 'class-transformer';
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('users')
-export class UserEntity {
+@Entity('staff')
+export class StaffEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,11 +26,11 @@ export class UserEntity {
 
   @Column({
     type: 'enum',
-    enum: UserStatus,
-    default: UserStatus.ACTIVE,
+    enum: StaffStatus,
+    default: StaffStatus.ACTIVE,
     nullable: false,
   })
-  status: UserStatus;
+  status: StaffStatusType;
 
   @Column({
     type: 'varchar',
@@ -48,10 +48,10 @@ export class UserEntity {
 
   @Column({
     type: 'enum',
-    enum: UserRole,
+    enum: StaffRole,
     nullable: false,
   })
-  role: UserRole;
+  role: StaffRoleType;
 
   @Column({
     type: 'varchar',
@@ -68,13 +68,3 @@ export class UserEntity {
   @CreateDateColumn()
   updated_at: Date;
 }
-
-// id int [pk, increment]
-// account varchar(50)
-// password varchar(255)
-// name varchar(100)
-// phone varchar(20)
-// role varchar(30)
-// refresh_token varchar(100)
-// created_at timestamp
-// updated_at timestamp

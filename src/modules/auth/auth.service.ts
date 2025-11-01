@@ -1,5 +1,4 @@
-import { UserEntity } from '@/modules/users/entities/user.entity';
-import { UsersRepository } from '@/modules/users/user.repository';
+import { StaffEntity } from '@/modules/staff/entities/staff.entity';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
@@ -7,12 +6,12 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthService {
   constructor(private readonly jwtService: JwtService) {}
 
-  async generateTokens(user: UserEntity): Promise<{
+  async generateTokens(staff: StaffEntity): Promise<{
     accessToken: string;
     refreshToken: string;
   }> {
-    const accessPayload = { id: user.id, account: user.account, role: user.role };
-    const refreshPayload = { id: user.id };
+    const accessPayload = { id: staff.id, account: staff.account, role: staff.role };
+    const refreshPayload = { id: staff.id };
 
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(accessPayload),
