@@ -1,4 +1,4 @@
-import { CreateStaffDto } from '@/modules/staff/dto/create-staff.dto';
+import { CreateStaffDto } from '@/admin/dto/create.staff.dto';
 import { StaffEntity } from '@/modules/staff/entities/staff.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

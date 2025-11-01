@@ -1,6 +1,6 @@
 import { StaffRole, StaffRoleType, StaffStatus, StaffStatusType } from '@/types';
 import { Exclude } from 'class-transformer';
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('staff')
 export class StaffEntity {
@@ -25,33 +25,30 @@ export class StaffEntity {
   password: string;
 
   @Column({
-    type: 'enum',
-    enum: StaffStatus,
-    default: StaffStatus.ACTIVE,
+    type: 'int',
     nullable: false,
   })
-  status: StaffStatusType;
+  branch_id: number;
 
   @Column({
     type: 'varchar',
-    length: 100,
+    length: 10,
     nullable: false,
   })
   name: string;
 
   @Column({
-    type: 'varchar',
-    length: 50,
+    type: 'int',
     nullable: false,
   })
-  phone: string;
+  staff_role_id: StaffRoleType;
 
   @Column({
     type: 'enum',
-    enum: StaffRole,
-    nullable: false,
+    enum: StaffStatus,
+    default: StaffStatus.ACTIVE,
   })
-  role: StaffRoleType;
+  status: StaffStatusType;
 
   @Column({
     type: 'varchar',
@@ -65,6 +62,6 @@ export class StaffEntity {
   @CreateDateColumn()
   created_at: Date;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updated_at: Date;
 }

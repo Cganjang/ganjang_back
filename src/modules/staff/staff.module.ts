@@ -4,10 +4,9 @@ import { StaffController } from './staff.controller';
 import { StaffRepository } from '@/modules/staff/staff.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StaffEntity } from '@/modules/staff/entities/staff.entity';
-import { AuthModule } from '@/modules/auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([StaffEntity]), AuthModule],
+  imports: [TypeOrmModule.forFeature([StaffEntity])],
   controllers: [StaffController],
   providers: [StaffService, StaffRepository],
   exports: [StaffRepository],

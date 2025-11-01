@@ -10,7 +10,7 @@ export class AuthService {
     accessToken: string;
     refreshToken: string;
   }> {
-    const accessPayload = { id: staff.id, account: staff.account, role: staff.role };
+    const accessPayload = { id: staff.id, account: staff.account, roleId: staff.staff_role_id };
     const refreshPayload = { id: staff.id };
 
     const [accessToken, refreshToken] = await Promise.all([

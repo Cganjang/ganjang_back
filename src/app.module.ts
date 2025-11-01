@@ -7,7 +7,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { StaffModule } from './modules/staff/staff.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AdminModule } from './admin/admin.module';
-import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(dbConfig), StaffModule, AuthModule, AdminModule],
